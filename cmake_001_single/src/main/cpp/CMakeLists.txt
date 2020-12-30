@@ -12,13 +12,13 @@ project("cmake")
 # 动态库打包 : Gradle 会自动将动态库打包到 APK 安装包中.
 
 add_library( # 参数 1 : 设置生成的动态库名称.
-        native-lib
+             native-lib
 
-        # 参数 2 : 设置生成的函数库类型 : ① 静态库 STATIC ② 动态库 SHARED.
-        SHARED
+             # 参数 2 : 设置生成的函数库类型 : ① 静态库 STATIC ② 动态库 SHARED.
+             SHARED
 
-        # 参数 3 : 配置要编译的源文件.
-        native-lib.cpp )
+             # 参数 3 : 配置要编译的源文件.
+             native-lib.cpp )
 
 # 搜索存储 : 搜索指定的预编译库, 并存储该预编译库的路径到变量中, 这里存储到了 log-lib 变量中.
 # 指定库名称 : CMake 的搜索路径默认包含了系统库, 只需要指定想添加的公共 NDK 库的名称即可, 这里指定 log 即可.
@@ -30,10 +30,10 @@ add_library( # 参数 1 : 设置生成的动态库名称.
 #   不同的 Android 版本号 和 CPU 架构 需要到对应的目录中查找 , 此处是 29 版本 32 位 ARM 架构的日志库
 
 find_library( # 设置保存函数库路径的变量名称.
-        log-lib
+              log-lib
 
-        # 指定 CMake 想要定位的 NDK 库名称
-        log )
+              # 指定 CMake 想要定位的 NDK 库名称
+              log )
 
 # 指定 CMake 应该连接到目标函数库的若干函数库.
 # 可以链接多个函数库, 如使用的 Android NDK 函数库, 预编译的第三方函数库, 系统库等.
@@ -42,7 +42,7 @@ find_library( # 设置保存函数库路径的变量名称.
 #       参数 2 ~ ... : 后面是之前预编译的动态库或静态库 , 或引入的动态库
 
 target_link_libraries( # 指定目标函数库.
-        native-lib
+                       native-lib
 
-        # 链接目标库到 NDK 中包含的日志库.
-        ${log-lib} )
+                       # 链接目标库到 NDK 中包含的日志库.
+                       ${log-lib} )

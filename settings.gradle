@@ -1,2 +1,3 @@
+include ':cmake_001_single'
 include ':app'
 rootProject.name = "CMake"
